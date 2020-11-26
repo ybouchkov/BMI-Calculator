@@ -15,6 +15,8 @@ class ResultViewController: UIViewController {
     @IBOutlet private weak var adviceLabel: UILabel!
     
     var bmiValue: String?
+    var advice: String?
+    var color: UIColor?
     
     // MARK: - SecondViewController Lifecycle
     override func viewDidLoad() {
@@ -26,6 +28,8 @@ class ResultViewController: UIViewController {
     // MARK: - Private
     private func showResult() {
         bmiLabel.text = bmiValue
+        adviceLabel.text = advice
+        view.backgroundColor = color
     }
     
     // MARK: - IBActions:
