@@ -16,7 +16,7 @@ class CalculateViewController: UIViewController {
     @IBOutlet private weak var heighLabel: UILabel!
     @IBOutlet private weak var weightLabel: UILabel!
     
-    var bmiValue: String = ""
+    var calculatorBrain = CalculatorBrain()
     
     // MARK: - ViewController Lifecycle
     
@@ -44,15 +44,15 @@ class CalculateViewController: UIViewController {
     private func calculateBtnPressed(_ sender: UIButton) {
         let height = heighSliderView.value
         let weight = weightSliderView.value
-        bmiValue = String(format: "%.2f", weight / pow(height, 2)) // (height * height)
-        
+
+        calculatorBrain.calculateBmi(height: height, weight: weight)
         self.performSegue(withIdentifier: "goToResult", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToResult" {
             let destination = segue.destination as! ResultViewController
-            destination.bmiValue = bmiValue
+            destination.bmiValue = calculatorBrain.getBmiValue()
         }
     }
 }
